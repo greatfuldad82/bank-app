@@ -32,6 +32,18 @@ app.get('/account/all', function (req, res) {
     });
 });
 
+app.get('/account/:deposit', (req, res) => {
+    console.log(req.params)
+})
+
+app.get('/account/:withdraw', (req, res) => {
+    res.send(req.params)
+})
+
+app.get('/account/:balance', (req, res) => {
+    res.send(req.params)
+})
+
 var port = 3000;
 app.listen(port);
 console.log('running on port: ' + port);
