@@ -19,6 +19,8 @@
   "homepage": "https://github.com/greatfuldad82/bank-app#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.2"
+    "db": "^3.3.1",
+    "express": "^4.17.2",
+    "mongo": "^0.1.0"
   }
 }
