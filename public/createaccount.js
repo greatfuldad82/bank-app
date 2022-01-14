@@ -76,7 +76,7 @@ function CreateAccount(){
               <input type="input" className="form-control" id="email" placeholder="EMAIL" value={email} data-toggle="tooltip" data-placement="top" title="VERIFIED EMAIL" onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
               <input type="password" className="form-control" id="password" placeholder="PASSWORD" value={password} data-toggle="tooltip" data-placement="top" title="minimum 8 characters" onChange={e => setPassword(e.currentTarget.value)}/><br/>
-              <div class="col-md-12 text-center">
+              <div className="col-md-12 text-center">
                 <button id="submit" type="submit" disabled={!name && !email && !password} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="confirm info before submission" onClick={handleCreate}>
                 <span>CREATE</span><br/>
                 <span>ACCOUNT</span></button>

@@ -53,7 +53,7 @@ function Withdraw(){
           Amount<br/>
           <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="Enter amount" onChange={e => {setWithdraw(e.currentTarget.value)}} 
           /><br/>
-          <div class="col-md-12 text-center">
+          <div className="col-md-12 text-center">
             <button id="withdraw" disabled={!withdraw} type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="check withdrawal amount" onClick={handleWithdraw}>Withdraw</button>        
           </div>
         </>

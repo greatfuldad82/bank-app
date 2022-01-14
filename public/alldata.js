@@ -17,21 +17,21 @@ function AllData(){
   
   return (
     <>
-      <div class="container bg-info ">
-        <div class="row">
-          <div class="col-sm">
+      <div className="container bg-info ">
+        <div className="row">
+          <div className="col-sm">
             <h3>Name</h3><br/>
             {name.split(",")[1]}<br/>
             {name.split(",")[2]}<br/>
             {name.split(",")[3]}<br/>
           </div>
-          <div class="col-sm">
+          <div className="col-sm">
             <h3>Email</h3><br/>
             {email.split(",")[1]}<br/>
             {email.split(",")[2]}<br/>
             {email.split(",")[3]}<br/>
           </div>
-          <div class="col-sm">
+          <div className="col-sm">
             <h3>Password</h3><br/>
             {password.split(",")[1]}<br/>
             {password.split(",")[2]}<br/>

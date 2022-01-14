@@ -54,7 +54,7 @@ function Deposit(){
           AMOUNT<br/>
           <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="enter deposit amount" onChange={e => {setDeposit(e.currentTarget.value)}} 
           /><br/>
-          <div class="col-md-12 text-center">
+          <div className="col-md-12 text-center">
             <button id="deposit" type="submit" disabled={!deposit} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="check deposit amount" onClick={handleDeposit}>DEPOSIT</button>   
           </div>     
         </>
