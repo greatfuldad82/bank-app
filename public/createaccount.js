@@ -4,6 +4,7 @@ function CreateAccount(){
   const [name, setName]         = React.useState('');
   const [email, setEmail]       = React.useState('');
   const [password, setPassword] = React.useState('');
+  const props = React.useState('');
   const ctx = React.useContext(UserContext);  
 
   function validate(field, label){
@@ -42,14 +43,26 @@ function CreateAccount(){
     return true;
   }
 
-  function handleCreate(){
-    console.log(name,email,password);
-    if (!validate(name,     'name'))     return;
-    if (!validate(email,    'email'))    return;
-    if (!validate(password, 'password')) return;
-    ctx.users.push({name,email,password,balance:100});
-    setShow(false);
-  } 
+  function handleCreate() {
+    console.log(name, email, password);
+    const url =
+      `/account/create/${name}/${email}/${password}`;
+    (async () => {
+      var res = await fetch(url);
+      var data = await res.json();
+      console.log(data);
+    })();
+    props.setShow(false);
+  }
+
+  // function handleCreate(){
+  //   console.log(name,email,password);
+  //   if (!validate(name,     'name'))     return;
+  //   if (!validate(email,    'email'))    return;
+  //   if (!validate(password, 'password')) return;
+  //   ctx.users.push({name,email,password,balance:100});
+  //   setShow(false);
+  // } 
 
   function showSuccessMsg(){
     alert('Created!');    
