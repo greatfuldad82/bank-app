@@ -15,6 +15,14 @@ app.get('/account/create/:name/:email/:password', function (req, res) {
         res.send(user);
     })
 })
+
+//login
+app.get('/account/login/:email/:password', function (req, res) {
+    dal.login(req.params.email, req.params.password).then((user) => {
+        console.log(user);
+        res.send(user);
+    })
+})
     
 //all accounts
 app.get('/account/all', function (req, res) {
@@ -25,6 +33,6 @@ app.get('/account/all', function (req, res) {
         });
 });    
 
-var port = 3000;
+var port = 3001;
 app.listen(port);
 console.log('running on port: ' + port);
