@@ -11,10 +11,11 @@ function AllData() {
       });
   }, []);
 
-  return (<>
-    <h5>All Data in Store:</h5>
-    {data}
-  </>)
+  // this returns all created users, so we don't want that printing on the app
+  // return (<>
+  //   <h5>All Data in Store:</h5>
+  //   {data}
+  // </>)
 }
 
 // function AllData(){

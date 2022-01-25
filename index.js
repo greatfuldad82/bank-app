@@ -6,6 +6,7 @@ var dal = require('./dal.js');
 //used to serve static files from public directory 
 app.use(express.static('public'));
 app.use(cors());
+app.use(express.json());
 
 //create user account 
 app.get('/account/create/:name/:email/:password', function (req, res) {
@@ -14,7 +15,7 @@ app.get('/account/create/:name/:email/:password', function (req, res) {
         console.log(user);
         res.send(user);
     })
-})
+});
 
 //login
 app.get('/account/login/:email/:password', function (req, res) {
@@ -23,7 +24,15 @@ app.get('/account/login/:email/:password', function (req, res) {
         res.send(user);
     })
 })
-    
+
+// //anelisy example // uncomment for more..  //  
+// app.post('/account/my-login', function(req, res) {
+//     dal.login(req.body.email, req.body.password).then((user) => {
+//         console.log(user);
+//         res.send(user);
+//     })
+// })
+
 //all accounts
 app.get('/account/all', function (req, res) {
    dal.all().

@@ -33,4 +33,16 @@ function all() {
     })
 }
 
-module.exports = { create, all };
+function login(email, password) {
+    return new Promise((resolve, reject) => {
+        db.collection('users').findOne({ email, password }, (err, result) => {
+            if (err) {
+                reject(err) 
+            } else {
+                resolve(result)        
+            }
+        }) 
+    })
+}
+
+module.exports = { create, all, login };
