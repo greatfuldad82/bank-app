@@ -50,7 +50,6 @@ function LoginForm(props){
     props.setStatus('fail!');        
   }
 
-
   return (<>
 
     Email<br/>
