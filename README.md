@@ -22,13 +22,14 @@ Installation and Instructions:
               
               run, npm i express
                    npm i mongodb
+                   npm i nodemon (this ensures we don't have to stop and restart the server locally any time there is a change in the code)
                    
-              to run the app, node index.js, which is main file for the entire app's file branch.. 
+              to run the app, npm start, as i have installed a "start":"nodemon index.js" line in the package.json file
               
-              that should spin up a server at localhost: 3001, as that is how i have denoted it in the project. 
+              that will spin up a server at localhost: 3001, as that is how i have denoted it in the project. 
               
               click through the app.. add yourself as a user.. login.  make deposits and withdrawals and see your
-              balance change.. if you navigate to AllData, you will see that you have been added..
+              balance change.. 
               
               To see the back end, download Docker and create an account if you don't have one..
               Download Robo3T  which is a graphic user interface that displays how the app is connecting
