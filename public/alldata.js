@@ -3,7 +3,7 @@ function AllData() {
   
   React.useEffect(() => {
     // fetch all accounts from API
-    fetch('/account/all')
+    fetch('http://localhost:3001/account/all')
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -11,11 +11,10 @@ function AllData() {
       });
   }, []);
 
-  // this returns all created users, so we don't want that printing on the app
-  // return (<>
-  //   <h5>All Data in Store:</h5>
-  //   {data}
-  // </>)
+  return (<>
+    <h5>All Data in Store:</h5>
+    {data}
+  </>)
 }
 
 // function AllData(){

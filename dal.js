@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 const url         = 'mongodb://localhost:27017';
 let db = null;
 
@@ -18,6 +19,21 @@ function create(name, email, password) {
         collection.insertOne(doc, { w: 1 }, function (err, result) {
             err ? reject(err) : resolve(doc);
         });
+    })
+}
+
+function update(userId, updateItem) {
+    return new Promise((resolve, reject) => {
+        const collection = db.collection('users');
+        console.log('User Object id', ObjectId(userId))
+        collection.updateOne({ _id: ObjectId(userId) }, { $set: updateItem}, (err, result) => {
+            if (err) {
+                console.log({ err })
+                reject('Update failed');
+            }
+
+           resolve(result)
+        })
     })
 }
 
@@ -45,4 +61,4 @@ function login(email, password) {
     })
 }
 
-module.exports = { create, all, login };
+module.exports = { create, all, login, update };

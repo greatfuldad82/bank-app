@@ -35,11 +35,26 @@ function Withdraw(){
     if (!validate(withdraw))
       return;
     ctx.users.slice(0);
-    ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
-    ctx.setUsers(ctx.users.slice(0));
-    setWithdraw(0);
-    setShow(false);
+
+    const newBalance = Number(ctx.loggedInUser.balance) - Number(withdraw);
+    // ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
+    // ctx.setUsers(ctx.users.slice(0));
+    const requestOptions = {
+      method: 'PUT',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        balance: newBalance
+      })
+    }
+    fetch('http://localhost:3001/account/update/' + ctx.loggedInUser._id, requestOptions) 
+      .then(function(response) {
+        return response.json()
+      }).then((result) => {
+        setWithdraw(0);
+        setShow(false);
+      })
   }
+
 
   return (
     <Card
