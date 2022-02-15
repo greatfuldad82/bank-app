@@ -2,13 +2,21 @@ function Withdraw(){
   const [show, setShow] = React.useState(true);
   const [status, setStatus] = React.useState('');
   const [withdraw, setWithdraw] = React.useState(0);
+  const [balance, setBalance] = React.useState(0);
+  
   const ctx = React.useContext(UserContext);
+
+  React.useEffect(() => {
+    if (ctx.loggedInUser) {
+      setBalance(ctx.loggedInUser.balance);
+    }
+  }, [ctx])
   
   function clearForm(){
     console.log('Balance: ' + ctx.users[0].balance);
     setWithdraw('');
     setShow(true);
-  }//clearForm
+  }
 
   function validate(field){
     let curBal;
@@ -21,7 +29,8 @@ function Withdraw(){
       setTimeout(() => setStatus(''),2000);
       return false;
     }
-    else if (isNaN(field)) {
+    
+    if (isNaN(field)) {
       setStatus('Error: withdraw number');
       alert('You\'ve entered character(s).\nPlease, enter number greater than 0 .');
       setTimeout(() => setStatus(''),2000);
@@ -36,9 +45,9 @@ function Withdraw(){
       return;
     ctx.users.slice(0);
 
-    const newBalance = Number(ctx.loggedInUser.balance) - Number(withdraw);
-    // ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
-    // ctx.setUsers(ctx.users.slice(0));
+    const newBalance = Number(curBalance) - Number(withdraw);
+    ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
+    ctx.setUsers(ctx.users.slice(0));
     const requestOptions = {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
@@ -46,14 +55,26 @@ function Withdraw(){
         balance: newBalance
       })
     }
-    fetch('http://localhost:3001/account/update/' + ctx.loggedInUser._id, requestOptions) 
-      .then(function(response) {
-        return response.json()
-      }).then((result) => {
-        setWithdraw(0);
-        setShow(false);
+    
+    //api call to update balance
+    fetch('http://localhost:3001/account/update/' + ctx.loggedInUser._id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        balance: newBalance
       })
-  }
+    })
+      .then(res => res.json()) 
+      .then((result) => {
+        console.log({ result })
+        if (result.success) => {
+          ctx.setLoggedInUser({
+            ...ctx.loggedInUser,
+            balance: newBalance,
+        })
+      }
+    })
+  
 
 
   return (
