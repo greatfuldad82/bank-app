@@ -61,8 +61,6 @@ app.put('/account/update/:userId', function (req, res) {
         console.log('Error ', err);
         res.send({ success: false, message: 'Update failed'})
     })
-
-
 })
 
 var port = 3001;

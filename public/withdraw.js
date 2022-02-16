@@ -19,9 +19,9 @@ function Withdraw(){
   }
 
   function validate(field){
-    let curBal;
+    let curBalance;
     let afterWithdraw;
-    curBal = Number(ctx.users[0].balance);
+    curBalance = Number(ctx.users[0].balance);
     afterWithdraw = curBal - Number(field);
     if(afterWithdraw<0){
       setStatus('Error: overdraft');
@@ -39,11 +39,20 @@ function Withdraw(){
     return true;
   }
 
-  function handleWithdraw(){
-    console.log('withdrew: ' + withdraw);
-    if (!validate(withdraw))
-      return;
+  function handleWithdraw() {
+    let curBalance;
+    const loggedInUser = ctx.loggedInUser;
+
     ctx.users.slice(0);
+    curBalance = ctx.loggedInUser.balance;
+    console.log('amount withdrawn:' + withdraw);
+    if (!validate(withdraw)) {
+      return;
+    }
+    // console.log('withdrew: ' + withdraw);
+    // if (!validate(withdraw))
+    //   return;
+    // ctx.users.slice(0);
 
     const newBalance = Number(curBalance) - Number(withdraw);
     ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
@@ -57,26 +66,29 @@ function Withdraw(){
     }
     
     //api call to update balance
-    fetch('http://localhost:3001/account/update/' + ctx.loggedInUser._id, {
+    fetch('http://localhost:3001/account/update/' + loggedInUser._id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         balance: newBalance
       })
     })
-      .then(res => res.json()) 
+      .then(res => res.json())
       .then((result) => {
         console.log({ result })
-        if (result.success) => {
+        if (result.success) {
           ctx.setLoggedInUser({
             ...ctx.loggedInUser,
             balance: newBalance,
-        })
-      }
-    })
+          })
+        }
+        ctx.setUsers(ctx.users.slice(0));
+        setWithdraw(0);
+        setShow(false);
+      })
+  }
   
-
-
+  
   return (
     <Card
       bgcolor="warning"
