@@ -26,7 +26,7 @@ function Withdraw(){
     if(afterWithdraw<0){
       setStatus('Error: overdraft');
       alert(`overdraft.\nPlease, enter amount equal or less than ${curBal}.`);
-      setTimeout(() => setStatus(''),2000);
+      setTimeout(() => setStatus(''),1000);
       return false;
     }
     
@@ -55,15 +55,15 @@ function Withdraw(){
     // ctx.users.slice(0);
 
     const newBalance = Number(curBalance) - Number(withdraw);
-    ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
-    ctx.setUsers(ctx.users.slice(0));
-    const requestOptions = {
-      method: 'PUT',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        balance: newBalance
-      })
-    }
+    // ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
+    // ctx.setUsers(ctx.users.slice(0));
+    // const requestOptions = {
+    //   method: 'PUT',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     balance: newBalance
+    //   })
+    // }
     
     //api call to update balance
     fetch('http://localhost:3001/account/update/' + loggedInUser._id, {
