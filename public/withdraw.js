@@ -55,6 +55,7 @@ function Withdraw(){
     // ctx.users.slice(0);
 
     const newBalance = Number(curBalance) - Number(withdraw);
+    
     // ctx.users[0].balance = Number(ctx.users[0].balance) - Number(withdraw);;
     // ctx.setUsers(ctx.users.slice(0));
     // const requestOptions = {
