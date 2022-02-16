@@ -63,6 +63,6 @@ app.put('/account/update/:userId', function (req, res) {
     })
 })
 
-var port = 3001;
+var port = process.env.PORT || 3001;
 app.listen(port);
 console.log('running on port: ' + port);
