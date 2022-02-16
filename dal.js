@@ -1,7 +1,7 @@
+require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
-// const url         = 'mongodb://localhost:27017';
-const url         = 'mongodb+srv://bank-app:LDbncaZtkWg0FV7C@cluster0.nszsq.mongodb.net/myproject?retryWrites=true&w=majority';
+const url = process.env.MONGO_URI
 let db = null;
 
 //connect to mongo
