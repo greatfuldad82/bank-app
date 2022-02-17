@@ -12,7 +12,7 @@ function AllData() {
   }, []);
 
   return (<>
-    <h5></h5>
+    <h5>developer: greatful_dad@icloud.com</h5>
     {/* {data} */}
   </>)
 }

@@ -21,7 +21,7 @@ function NavBar(){
             <a className="nav-link" href="#/withdraw/" data-placement="top" title="To get cash from your deposit account, click this link please.">Withdraw</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/alldata/" data-placement="top" title="This is an administator's menu. If you want to list up all the registered clients' information, click this link please.">AllData</a>
+            <a className="nav-link" href="#/alldata/" data-placement="top" title="This is an administator's menu. If you want to list up all the registered clients' information, click this link please.">Contact</a>
           </li>          
         </ul>
       </div>
