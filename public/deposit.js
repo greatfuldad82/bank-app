@@ -52,7 +52,7 @@ function Deposit(){
     const newBalance = Number(curBalance) + Number(deposit)
     
     // api call to update balance
-    fetch('http://localhost:3001/account/update/' + loggedInUser._id, {
+    fetch('/account/update/' + loggedInUser._id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -4,7 +4,7 @@ function Spa() {
     const [loggedInUser, setLoggedInUser] = React.useState()
   
     const handleSendUserInfo = (userInfo) => {
-      fetch("http://localhost:3001/account/my-login", {
+      fetch("/account/my-login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userInfo)
