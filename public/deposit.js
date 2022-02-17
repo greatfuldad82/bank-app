@@ -74,9 +74,9 @@ function Deposit(){
     })
   }
 
-  if (!ctx.loggedInUser) {
-    return <h1>Please Login </h1>
-  }
+  // if (!ctx.loggedInUser) {
+  //   return <h1>Please Login </h1>
+  // }
 
   return (
     <Card
@@ -87,7 +87,7 @@ function Deposit(){
         <>
           <h3>BALANCE: {balance.toFixed(2)} </h3>
 
-          AMOUNT<br/>
+          AMOUNT(<br/>
           <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="enter deposit amount" onChange={e => {setDeposit(e.currentTarget.value)}} 
           /><br/>
           <div className="col-md-12 text-center">

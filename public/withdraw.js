@@ -2,18 +2,11 @@ function Withdraw(){
   const [show, setShow] = React.useState(true);
   const [status, setStatus] = React.useState('');
   const [withdraw, setWithdraw] = React.useState(0);
-  const [balance, setBalance] = React.useState(0);
   
   const ctx = React.useContext(UserContext);
-
-  React.useEffect(() => {
-    if (ctx.loggedInUser) {
-      setBalance(ctx.loggedInUser.balance);
-    }
-  }, [ctx])
   
   function clearForm(){
-    console.log('Balance: ' + ctx.users[0].balance);
+    console.log('Balance: ' + ctx.loggedInUser.balance);
     setWithdraw('');
     setShow(true);
   }
@@ -21,11 +14,11 @@ function Withdraw(){
   function validate(field){
     let curBalance;
     let afterWithdraw;
-    curBalance = Number(ctx.users[0].balance);
-    afterWithdraw = curBal - Number(field);
+    curBalance = Number(ctx.loggedInUser.balance);
+    afterWithdraw = curBalance - Number(field);
     if(afterWithdraw<0){
       setStatus('Error: overdraft');
-      alert(`overdraft.\nPlease, enter amount equal or less than ${curBal}.`);
+      alert(`overdraft.\nPlease, enter amount equal or less than ${curBalance}.`);
       setTimeout(() => setStatus(''),1000);
       return false;
     }
@@ -40,11 +33,11 @@ function Withdraw(){
   }
 
   function handleWithdraw() {
-    let curBalance;
+    console.log('HANDLE WITHDRAW CALLED!!!!')
     const loggedInUser = ctx.loggedInUser;
 
     ctx.users.slice(0);
-    curBalance = ctx.loggedInUser.balance;
+    const curBalance = ctx.loggedInUser.balance;
     console.log('amount withdrawn:' + withdraw);
     if (!validate(withdraw)) {
       return;
@@ -88,6 +81,10 @@ function Withdraw(){
         setShow(false);
       })
   }
+
+  if (!ctx.loggedInUser) {
+    return <h1>Please Login </h1>
+  }
   
   
   return (
@@ -97,7 +94,7 @@ function Withdraw(){
       status={status}
       body={show ? (
         <>
-          <h3>Balance {ctx.users[0].balance.toFixed(2)} </h3>
+          <h3>Balance {Number(ctx.loggedInUser.balance).toFixed(2)} </h3>
 
           Amount<br/>
           <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="Enter amount" onChange={e => {setWithdraw(e.currentTarget.value)}} 
@@ -108,7 +105,7 @@ function Withdraw(){
         </>
       ):(
         <>
-          <h3>Balance: {ctx.users[0].balance}</h3>
+          <h3>Balance: {ctx.loggedInUser.balance}</h3>
           <h5>Your withdraw has been successfully processed!</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another withdraw</button>
         </>
