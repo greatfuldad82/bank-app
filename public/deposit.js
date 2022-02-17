@@ -74,9 +74,9 @@ function Deposit(){
     })
   }
 
-  // if (!ctx.loggedInUser) {
-  //   return <h1>Please Login </h1>
-  // }
+  if (!ctx.loggedInUser) {
+    return <h1>Please Login </h1>
+  }
 
   return (
     <Card
