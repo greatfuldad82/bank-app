@@ -11,10 +11,10 @@ function AllData() {
       });
   }, []);
 
-  return (<>
-    <h5>All Data in Store:</h5>
-    {data}
-  </>)
+  // return (<>
+  //   <h5>All Data in Store:</h5>
+  //   {data}
+  // </>)
 }
 
 // function AllData(){
