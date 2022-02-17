@@ -2,15 +2,15 @@ function Deposit(){
   const [show, setShow] = React.useState(true);
   const [status, setStatus] = React.useState('');
   const [deposit, setDeposit] = React.useState(0);
-  const [balance, setBalance] = React.useState(0);
+  // const [balance, setBalance] = React.useState(0);
 
   const ctx = React.useContext(UserContext);
 
-  React.useEffect(() => {
-    if (ctx.loggedInUser) {
-      setBalance(ctx.loggedInUser.balance);
-    }
-  }, [ctx])
+  // React.useEffect(() => {
+  //   if (ctx.loggedInUser) {
+  //     setBalance(ctx.loggedInUser.balance);
+  //   }
+  // }, [ctx])
   
   function clearForm(){
     console.log('Balance: ' + ctx.users[0].balance);
@@ -85,7 +85,7 @@ function Deposit(){
       status={status}
       body={show ? (
         <>
-          <h3>BALANCE: {balance.toFixed(2)} </h3>
+          <h3>BALANCE: {Number(ctx.loggedInUser.balance).toFixed(2)} </h3>
 
           AMOUNT(<br/>
           <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="enter deposit amount" onChange={e => {setDeposit(e.currentTarget.value)}} 
@@ -96,7 +96,7 @@ function Deposit(){
         </>
       ):(
         <>
-          <h3>BALANCE:{balance.toFixed(2)} </h3>
+          <h3>BALANCE:{Number(ctx.loggedInUser.balance).toFixed(2)} </h3>
           <h5>your deposit has been accepted</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another deposit</button>
         </>
