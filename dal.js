@@ -56,6 +56,7 @@ function all() {
     })
 }
 
+// login
 function login(email, password) {
     return new Promise((resolve, reject) => {
         db.collection('users').findOne({ email, password }, (err, result) => {
